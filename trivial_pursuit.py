@@ -58,9 +58,11 @@ print (plateau)
 
 
 #Cette fonction permet de lancer un de a 6 faces et de retourner une valeur au hasard
+
 def random_de() :
     return randint(1,6)
 
+#Cette fonction déroule un coup pour le joueur courant (passé entre paramètre), elle retourne 1 si il doit rejouer, et 2 sinon.
 def deroulement_d1_coup (joueur) :
     valeur_de = random_de()   
     print(joueur["nom"] +  " is playing and made a "+ str(valeur_de) + " with the dice")
@@ -92,8 +94,15 @@ def deroulement_d1_coup (joueur) :
     color = case["couleur"]
     print("It's a " + color )
     
+#Si le joueur tombe sur une case blanche
+    if color == "white" :
+        return 1 
+    
+    
+    return 2
+    
+    
 
-            
             
 
 
@@ -122,11 +131,17 @@ def jeu () :
     print("Voici les joueurs" + str(liste_joueurs) ) 
     
     #Cette variable pointe vers le joueur à qui c'est le tour de jouer 
-    joueur_courant = liste_joueurs[0]
+    numero_joueur_courant = 0
     
     #La partie commence
     while True :
-        deroulement_d1_coup(joueur_courant)
+        joueur_courant = liste_joueurs[numero_joueur_courant]
+        ret = deroulement_d1_coup(joueur_courant)
+        if ret == 2 : 
+            numero_joueur_courant +=1 
+        if numero_joueur_courant >= nombre_de_joueurs : 
+            numero_joueur_courant -= nombre_de_joueurs
+    
     
 
 #PP
