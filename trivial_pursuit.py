@@ -7,7 +7,63 @@ Created on Mon Jun 22 09:42:17 2020
 """
 
 from random import randint
- 
+
+
+yellow_questions = [{
+"q" : "What color is pikachu ?",
+"rc" : "Yellow",
+"ri_lst" : ["black", "red", "green"],
+}]
+orange_questions = [{
+"q" : "What city is the capital of Japan",
+"rc" : "Tokyo",
+"ri_lst" : ["Hiroshima", "Kyoto",
+"Hosaka"],
+}]
+purple_question = [{
+"q" : "What is the title of the most famous song of Prince ?",
+"rc" : "Purple rain",
+"ri_lst" : ["deep purple", "thriller","let it be"],
+}]
+red_questions = [{
+"q" : "What is the toughest communist country ?",
+"rc" : "North Corea",
+"ri_lst" : ["Russia", "Cuba","Poland"],
+}]
+green_questions = [{
+"q" : "What color is alien blood ?",
+"rc" : "Green",
+"ri_lst" : ["Red", "Blue","Brown"],
+}]
+blue_questions = [{
+"q" : "Of what color is Depardieu's nose ?",
+"rc" : "red ",
+"ri_lst" : ["green", "blue","gray"],
+}]
+
+
+
+
+
+
+
+
+Base_questions = [
+{"couleur" : "yellow" , "Questions" : yellow_questions} ,
+{"couleur" : "red" , "Questions" : red_questions} ,    
+{"couleur" : "orange" , "Questions" : orange_questions} ,
+{"couleur" : "green" , "Questions" : green_questions} ,
+{"couleur" : "blue" , "Questions" : blue_questions} ,
+{"couleur" : "purple" , "Questions" : purple_questions} 
+]
+
+
+
+
+
+
+
+
 
 plateau = [
     {"type" :"intersection", "couleur" : "white" },
@@ -94,16 +150,22 @@ def deroulement_d1_coup (joueur) :
     color = case["couleur"]
     print("It's a " + color )
     
-#Si le joueur tombe sur une case blanche
-    if color == "white" :
+    #Si le joueur tombe sur une case blanche
+    if color == "white" and case["type"] ==  "normal"
         return 1 
+    # Pose une question pour la couleur donnée.  
+    ret = poserQuestion(color)
+    
+    if ret == True : 
+        if case["type"] == "intersection"
+            joueur["score"] += 1 
+        return 1 
+
     
     
     return 2
     
     
-
-            
 
 
 
@@ -125,7 +187,8 @@ def jeu () :
     for i in range(0,nombre_de_joueurs) : 
         nom_du_joueur = raw_input("Veuillez saisir le nom du joueur " + str(i+1)+":").lstrip()
         liste_joueurs.append({"nom" : nom_du_joueur , 
-                            "token position" : 0})
+                            "token position" : 0 ,
+                            "score" : 0})
     
         
     print("Voici les joueurs" + str(liste_joueurs) ) 
