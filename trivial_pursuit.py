@@ -13,13 +13,54 @@ def random_de() :
     return randint(1,6)
 
 
-
 def deroulement_d1_coup() : 
-    
-
-
 #Programme principal
-    
+
+    plateau = [
+    {type :"intersection", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"intersection", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"intersection", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"intersection", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"intersection", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"intersection", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"normal", couleur : "blanche" },
+    {type :"intersection", couleur : "blanche" } ]
+
 
 liste_joueurs = []    
 nb_max_joueurs = 4       
