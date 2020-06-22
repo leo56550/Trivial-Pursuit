@@ -8,13 +8,6 @@ Created on Mon Jun 22 09:42:17 2020
 
 from random import randint
  
-#Cette fonction permet de lancer un de a 6 faces et de retourner une valeur au hasard
-def random_de() :
-    return randint(1,6)
-
-
- 
-#Programme principal
 
 plateau = [
     {"type" :"intersection", "couleur" : "white" },
@@ -62,33 +55,80 @@ plateau = [
      ]
 
 print (plateau)
-liste_joueurs = []    
-nb_max_joueurs = 4       
-# Saisir le nombre de joueurs
-while True : 
-    nombre_de_joueurs = raw_input("Veuillez saisir le nombre de joueurs svp :  (maximum " + str(nb_max_joueurs) + ")" ).lstrip()
-    nombre_de_joueurs = int(nombre_de_joueurs)
-    if nombre_de_joueurs > nb_max_joueurs :
-        print("Veuillez saisir un nombre inférieur ou égal à " + str(nb_max_joueurs))     
-    else : 
-        break 
-      
-# Saisir les noms des joueurs  
-for i in range(0,nombre_de_joueurs) : 
-    nom_du_joueur = raw_input("Veuillez saisir le nom du joueur " + str(i+1)+":").lstrip()
-    liste_joueurs.append({"nom" : nom_du_joueur , 
-                        "score" : 0})
 
+
+#Cette fonction permet de lancer un de a 6 faces et de retourner une valeur au hasard
+def random_de() :
+    return randint(1,6)
+
+def deroulement_d1_coup (joueur) :
+    valeur_de = random_de()   
+    print(joueur["nom"] +  " is playing and made a "+ str(valeur_de) + " with the dice")
+
+
+    while True : 
+        deplacement = raw_input("To what direction ?  (C)lockwise or (A)nticlockwise").lstrip()
+        if deplacement == "C" :
+            forward = True
+            break;
+        if deplacement == "A" :
+            forward = False
+            break;
     
-print("Voici les joueurs" + str(liste_joueurs) ) 
-
-
-
-# calculer le gagnant       
-score_max = 0
-for joueur in  liste_joueurs :
-    if joueur["score"] > score_max:
-        score_max = joueur["score"]
-        gagnant =  joueur
+        print("Please say 'C' or 'A'")
         
-print("Le gagnant est : " + gagnant["nom"] + " et son score est : " + str(gagnant["score"]) ) 
+    position_courante = joueur["token position"]
+    if forward == True :
+        position_courante += valeur_de
+        if position_courante >= 42 : 
+            position_courante -= 42 
+    else :
+        position_courante -= valeur_de 
+        if position_courante < 0 :
+            position_courante += 42
+    joueur["token position"] = position_courante
+
+    case = plateau[position_courante]
+    color = case["couleur"]
+    print("It's a " + color )
+    
+
+            
+            
+
+
+
+def jeu () : 
+    
+    liste_joueurs = []    
+    nb_max_joueurs = 4 
+      
+# Saisir le nombre de joueurs
+    while True : 
+        nombre_de_joueurs = raw_input("Veuillez saisir le nombre de joueurs svp :  (maximum " + str(nb_max_joueurs) + ")" ).lstrip()
+        nombre_de_joueurs = int(nombre_de_joueurs)
+        if nombre_de_joueurs > nb_max_joueurs :
+            print("Veuillez saisir un nombre inférieur ou égal à " + str(nb_max_joueurs))     
+        else : 
+            break 
+          
+    # Saisir les noms des joueurs  
+    for i in range(0,nombre_de_joueurs) : 
+        nom_du_joueur = raw_input("Veuillez saisir le nom du joueur " + str(i+1)+":").lstrip()
+        liste_joueurs.append({"nom" : nom_du_joueur , 
+                            "token position" : 0})
+    
+        
+    print("Voici les joueurs" + str(liste_joueurs) ) 
+    
+    #Cette variable pointe vers le joueur à qui c'est le tour de jouer 
+    joueur_courant = liste_joueurs[0]
+    
+    #La partie commence
+    while True :
+        deroulement_d1_coup(joueur_courant)
+    
+
+#PP
+    
+jeu()
