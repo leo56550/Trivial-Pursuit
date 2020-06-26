@@ -5,23 +5,39 @@ Created on Mon Jun 22 09:42:17 2020
 
 @author: leo
 """
-#from random import randint
-import math
 
+import math
 import random
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+import sqlite3
+
+
+conn = sqlite3.connect('trivia.sqlite3')
+
+cur =conn.cursor()
+
+# TODO -> find lowest and highest IDs with "select"
+
+nbquestions=cur.execute('select count(*) from question').fetchall()
+print('nb:' + str(nbquestions))
+
+rand_question=random.randint(1, nbquestions[0][0])
+
+print("nb rand  "+ str(rand_question))
+
+for row in cur.execute('select q.input from question q where q.id_question = ' + str(rand_question)).fetchall():
+    print(row)
+
+for row in cur.execute('select a.text,a.is_correct from answer a,question q where a.id_question = q.id_question and q.id_question = ' + str(rand_question)).fetchall():
+    print(row)
+
+
 img = mpimg.imread('./img/plateau2.png')
 imgplot = plt.imshow(img)
 
-print("size:" + str(img.shape))
-
-plt.axis('scaled')
-
 plt.ion()
 plt.show()
-
-
 
 
 
@@ -88,52 +104,60 @@ base_questions = {
 
 
 plateau = [
-    {"type" :"intersection", "couleur" : "red" },
-    {"type" :"normal", "couleur" : "orange" },
-    {"type" :"normal", "couleur" : "white" },
-    {"type" :"normal", "couleur" : "green" },
-    {"type" :"normal", "couleur" : "red" },
-    {"type" :"normal", "couleur" : "white" },
-    {"type" :"normal", "couleur" : "blue" },
-    {"type" :"intersection", "couleur" : "blue" },
-    {"type" :"normal", "couleur" : "blue" },
-    {"type" :"normal", "couleur" : "white" },
-    {"type" :"normal", "couleur" : "orange" },
-    {"type" :"normal", "couleur" : "yellow" },
-    {"type" :"normal", "couleur" : "white" },
-    {"type" :"normal", "couleur" : "red" },
-    {"type" :"intersection", "couleur" : "orange" },
-    {"type" :"normal", "couleur" : "red" },
-    {"type" :"normal", "couleur" : "white" },
-    {"type" :"normal", "couleur" : "blue" },
-    {"type" :"normal", "couleur" : "purple" },
-    {"type" :"normal", "couleur" : "white" },
-    {"type" :"normal", "couleur" : "yellow" },
-    {"type" :"intersection", "couleur" : "yellow" },
-    {"type" :"normal", "couleur" : "yellow" },
-    {"type" :"normal", "couleur" : "white" },
-    {"type" :"normal", "couleur" : "red" },
-    {"type" :"normal", "couleur" : "green" },
-    {"type" :"normal", "couleur" : "white" },
-    {"type" :"normal", "couleur" : "purple" },
-    {"type" :"intersection", "couleur" : "purple" },
-    {"type" :"normal", "couleur" : "purple" },
-    {"type" :"normal", "couleur" : "white" },
-    {"type" :"normal", "couleur" : "yellow" },
-    {"type" :"normal", "couleur" : "orange" },
-    {"type" :"normal", "couleur" : "white" },
-    {"type" :"normal", "couleur" : "green" },
-    {"type" :"intersection", "couleur" : "green" },
-    {"type" :"normal", "couleur" : "green" },
-    {"type" :"normal", "couleur" : "white" },
-    {"type" :"normal", "couleur" : "purple" },
-    {"type" :"normal", "couleur" : "blue" },
-    {"type" :"normal", "couleur" : "white" },
-    {"type" :"normal", "couleur" : "orange" }
+    {"type" :"intersection", "couleur" : "red", "coord" : (26 , 260 ) },
+    {"type" :"normal", "couleur" : "orange", "coord" : (30 , 215) },
+    {"type" :"normal", "couleur" : "white", "coord" : (41 , 188  ) },
+    {"type" :"normal", "couleur" : "green", "coord" : (49 ,154 ) },
+    {"type" :"normal", "couleur" : "red" , "coord" : (70 , 132)},
+    {"type" :"normal", "couleur" : "white", "coord" : (89 , 108 ) },
+    {"type" :"normal", "couleur" : "blue" , "coord" : (110 ,88 )},
+    {"type" :"intersection", "couleur" : "blue", "coord" : (150 ,57 ) },
+    {"type" :"normal", "couleur" : "blue", "coord" : ( 184,42 ) },
+    {"type" :"normal", "couleur" : "white" , "coord" : (211 ,32 )},
+    {"type" :"normal", "couleur" : "orange" , "coord" : (242 ,32 )},
+    {"type" :"normal", "couleur" : "yellow" , "coord" : (273 ,31 )},
+    {"type" :"normal", "couleur" : "white", "coord" : ( 310,36 ) },
+    {"type" :"normal", "couleur" : "red" , "coord" : (338 ,40 )},
+    {"type" :"intersection", "couleur" : "orange", "coord" : (373 , 57 ) },
+    {"type" :"normal", "couleur" : "red", "coord" : (411 , 85 ) },
+    {"type" :"normal", "couleur" : "white", "coord" : (433 , 108 ) },
+    {"type" :"normal", "couleur" : "blue" , "coord" : (452 , 129 )},
+    {"type" :"normal", "couleur" : "purple" , "coord" : ( 467,126 )},
+    {"type" :"normal", "couleur" : "white" , "coord" : ( 477,195 )},
+    {"type" :"normal", "couleur" : "yellow" , "coord" : (488 ,216 )},
+    {"type" :"intersection", "couleur" : "yellow" , "coord" : ( 493,261 )},
+    {"type" :"normal", "couleur" : "yellow" , "coord" : (486 ,303 )},
+    {"type" :"normal", "couleur" : "white", "coord" : ( 480,337 ) },
+    {"type" :"normal", "couleur" : "red" , "coord" : (470 ,361 )},
+    {"type" :"normal", "couleur" : "green", "coord" : (453 ,392 ) },
+    {"type" :"normal", "couleur" : "white", "coord" : (432 ,417 ) },
+    {"type" :"normal", "couleur" : "purple" , "coord" : ( 411, 436 )},
+    {"type" :"intersection", "couleur" : "purple" , "coord" : (376 ,464 )},
+    {"type" :"normal", "couleur" : "purple", "coord" : ( 335,478 ) },
+    {"type" :"normal", "couleur" : "white", "coord" : (301 ,488 ) },
+    {"type" :"normal", "couleur" : "yellow", "coord" : ( 274,492 ) },
+    {"type" :"normal", "couleur" : "orange", "coord" : ( 254,492 ) },
+    {"type" :"normal", "couleur" : "white" , "coord" : (215 ,484 )},
+    {"type" :"normal", "couleur" : "green" , "coord" : (183 ,482 )},
+    {"type" :"intersection", "couleur" : "green" , "coord" : (146 ,460 )},
+    {"type" :"normal", "couleur" : "green" , "coord" : ( 107,440 )},
+    {"type" :"normal", "couleur" : "white" , "coord" : ( 89,415 )},
+    {"type" :"normal", "couleur" : "purple", "coord" : ( 65,391 ) },
+    {"type" :"normal", "couleur" : "blue" , "coord" : ( 54,361 )},
+    {"type" :"normal", "couleur" : "white" , "coord" : ( 38,334 )},
+    {"type" :"normal", "couleur" : "orange", "coord" : ( 35,309 ) }
 
 ]
 
+# Tip: select from sqlite
 
+# sqlite> select a.text from answer a,question q where a.id_question = q.id_question and q.id_question = 2800;
+#Lava Axe
+#Stone-Throwing Devils
+#Ember Shot
+#Throwing Knife
+
+# 
 
 couleurs_jetons = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple',
                    'tab:yellow']
