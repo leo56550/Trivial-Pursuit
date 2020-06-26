@@ -106,13 +106,13 @@ base_questions = {
 plateau = [
     {"type" :"intersection", "couleur" : "red", "coord" : (26 , 260 ) },
     {"type" :"normal", "couleur" : "orange", "coord" : (30 , 215) },
-    {"type" :"normal", "couleur" : "white", "coord" : (41 , 188  ) },
-    {"type" :"normal", "couleur" : "green", "coord" : (49 ,154 ) },
+    {"type" :"normal", "couleur" : "white", "coord" : (41 , 188  )},
+    {"type" :"normal", "couleur" : "green", "coord" : (49 ,154 )},
     {"type" :"normal", "couleur" : "red" , "coord" : (70 , 132)},
     {"type" :"normal", "couleur" : "white", "coord" : (89 , 108 ) },
     {"type" :"normal", "couleur" : "blue" , "coord" : (110 ,88 )},
     {"type" :"intersection", "couleur" : "blue", "coord" : (150 ,57 ) },
-    {"type" :"normal", "couleur" : "blue", "coord" : ( 184,42 ) },
+    {"type" :"normal", "couleur" : "blue", "coord" :  (184,42 ) },
     {"type" :"normal", "couleur" : "white" , "coord" : (211 ,32 )},
     {"type" :"normal", "couleur" : "orange" , "coord" : (242 ,32 )},
     {"type" :"normal", "couleur" : "yellow" , "coord" : (273 ,31 )},
@@ -121,33 +121,35 @@ plateau = [
     {"type" :"intersection", "couleur" : "orange", "coord" : (373 , 57 ) },
     {"type" :"normal", "couleur" : "red", "coord" : (411 , 85 ) },
     {"type" :"normal", "couleur" : "white", "coord" : (433 , 108 ) },
-    {"type" :"normal", "couleur" : "blue" , "coord" : (452 , 129 )},
+    {"type" :"normal", "couleur" : "blue" , "coord" :(452 , 129 )},
     {"type" :"normal", "couleur" : "purple" , "coord" : ( 467,126 )},
     {"type" :"normal", "couleur" : "white" , "coord" : ( 477,195 )},
     {"type" :"normal", "couleur" : "yellow" , "coord" : (488 ,216 )},
     {"type" :"intersection", "couleur" : "yellow" , "coord" : ( 493,261 )},
     {"type" :"normal", "couleur" : "yellow" , "coord" : (486 ,303 )},
-    {"type" :"normal", "couleur" : "white", "coord" : ( 480,337 ) },
+    {"type" :"normal", "couleur" : "white", "coord" :( 480,337 ) },
     {"type" :"normal", "couleur" : "red" , "coord" : (470 ,361 )},
     {"type" :"normal", "couleur" : "green", "coord" : (453 ,392 ) },
     {"type" :"normal", "couleur" : "white", "coord" : (432 ,417 ) },
     {"type" :"normal", "couleur" : "purple" , "coord" : ( 411, 436 )},
     {"type" :"intersection", "couleur" : "purple" , "coord" : (376 ,464 )},
     {"type" :"normal", "couleur" : "purple", "coord" : ( 335,478 ) },
-    {"type" :"normal", "couleur" : "white", "coord" : (301 ,488 ) },
+    {"type" :"normal", "couleur" : "white", "coord" : (301 ,488 )},
     {"type" :"normal", "couleur" : "yellow", "coord" : ( 274,492 ) },
     {"type" :"normal", "couleur" : "orange", "coord" : ( 254,492 ) },
-    {"type" :"normal", "couleur" : "white" , "coord" : (215 ,484 )},
+    {"type" :"normal", "couleur" : "white" , "coord" :(215 ,484 )},
     {"type" :"normal", "couleur" : "green" , "coord" : (183 ,482 )},
     {"type" :"intersection", "couleur" : "green" , "coord" : (146 ,460 )},
     {"type" :"normal", "couleur" : "green" , "coord" : ( 107,440 )},
     {"type" :"normal", "couleur" : "white" , "coord" : ( 89,415 )},
-    {"type" :"normal", "couleur" : "purple", "coord" : ( 65,391 ) },
+    {"type" :"normal", "couleur" : "purple", "coord" : ( 65,391 )},
     {"type" :"normal", "couleur" : "blue" , "coord" : ( 54,361 )},
     {"type" :"normal", "couleur" : "white" , "coord" : ( 38,334 )},
     {"type" :"normal", "couleur" : "orange", "coord" : ( 35,309 ) }
 
 ]
+
+
 
 # Tip: select from sqlite
 
@@ -167,10 +169,10 @@ R = img.shape[0] / 2 - 28;
 NbCases = 42
 
 
-#Cette fonction pose une question de la couleur donnée au joueur courant, s'il répond correctement, la fonction
-#retourne True sinon False
+
 def poserQuestion(color) : 
-    
+#Cette fonction pose une question de la couleur donnée au joueur courant, s'il répond correctement, la fonction"""
+#retourne True sinon False
     if color == "white":
         color = "red" # TODO ask the teacher what to do in this case
     
@@ -181,7 +183,7 @@ def poserQuestion(color) :
     
 
 #Melange des choix afin que la premiere reponse ne soit pas
-#toujours la bonne.
+#toujours la bonne."
     
     all_choices = [ (question["rc"], True),
                     (question["ri_lst"][0], False),
@@ -205,13 +207,15 @@ def poserQuestion(color) :
         return True
     
     return False
-#Cette fonction permet de lancer un de a 6 faces et de retourner une valeur au hasard
+
 
 def random_de() :
+#Cette fonction permet de lancer un de a 6 faces et de retourner une valeur au hasard"""
     return random.randint(1,6)
 
-#Cette fonction déroule un coup pour le joueur courant (passé entre paramètre), elle retourne 1 si il doit rejouer, et 2 sinon.
+
 def deroulement_d1_coup (joueur) :
+#Cette fonction déroule un coup pour le joueur courant (passé entre paramètre), elle retourne 1 si il doit rejouer, et 2 sinon. """
     valeur_de = random_de()
     print(joueur["nom"] +  " is playing and made a "+ str(valeur_de) + " with the dice")
 
@@ -260,9 +264,9 @@ def deroulement_d1_coup (joueur) :
     
 
 
-#La fonction "jeu" demandée dans les consignes
+
 def jeu () : 
-    
+ #La fonctiodicon "jeu" demandée dans les consignes"""
     
     
     liste_joueurs = []    
@@ -310,21 +314,17 @@ def jeu () :
         if numero_joueur_courant >= nombre_de_joueurs : 
             numero_joueur_courant -= nombre_de_joueurs
 
-            
-#Cette fonction sert à afficher le pion du joueur donné à sa postion courante
 def positionner_pion(joueur) : 
-    global R, NbCases
-    pos = joueur['token position']
-    x = R * math.cos(math.pi+NbCases*pos/(2*math.pi)) + R
-    y = R * math.sin(math.pi+NbCases*pos/(2*math.pi)) + R
+#Cette fonction sert à afficher le pion du joueur donné à sa postion courante"""
+    case = plateau[joueur["token position"]]
+    x = case['coord'][0]
+    y = case['coord'][1]
     circle = joueur['token']
     circle.center = x , y ;
             
  
     
 jeu()
-
-
 
 
 
